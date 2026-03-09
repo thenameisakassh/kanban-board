@@ -1,0 +1,73 @@
+body{
+    font-family: Arial;
+    background: #f4f5f7;
+    text-align: center;
+}
+
+.board{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.column{
+    background: white;
+    padding: 15px;
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.task{
+    background: #e3e7ff;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+button{
+    padding: 8px 10px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e3e7ff;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.delete-btn{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.task button{
+    margin-left: 5px;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.task button:nth-child(1){
+    background: #ffc107;
+}
+
+.task button:nth-child(2){
+    background: #dc3545;
+    color: white;
+}
