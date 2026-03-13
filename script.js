@@ -10,20 +10,44 @@ let taskText = prompt("Enter task");
 
 if(taskText === "" || taskText === null) return;
 
-createTask(taskText, columnId);
+const priority = document.getElementById("priority").value;
+const dueDate = document.getElementById("dueDate").value;
+
+createTask(taskText, columnId, priority, dueDate);
 
 saveTasks();
 }
 
 // CREATE TASK ELEMENT
-function createTask(text, columnId){
+function createTask(text, columnId, priority, dueDate){
 
 let task = document.createElement("div");
 task.className = "task";
 task.draggable = true;
 
+task.innerHTML = `
+<p>${text}</p>
+<span class="priority ${priority}">${priority}</span>
+<br>
+<small>Due: ${dueDate}</small>
+<br>
+<button class="delete-btn">Delete</button>
+`;
+
 task.addEventListener("dragstart", dragStart);
 
+// DELETE BUTTON
+task.querySelector(".delete-btn").onclick = function(){
+    task.remove();
+    saveTasks();
+    updateCounts();
+};
+
+document.getElementById(columnId).appendChild(task);
+
+// UPDATE COUNTER AFTER ADDING TASK
+updateCounts();
+}
 // TEXT
 let span = document.createElement("span");
 span.innerText = text;
@@ -50,6 +74,7 @@ deleteBtn.innerText = "❌";
 deleteBtn.onclick = function(){
 task.remove();
 saveTasks();
+updateCounts();
 };
 
 // BUTTON CONTAINER
@@ -62,8 +87,10 @@ task.appendChild(span);
 task.appendChild(actions);
 
 document.getElementById(columnId).appendChild(task);
+updateCounts();
 
-}
+
+
 
 // DRAG START
 function dragStart(){
@@ -125,4 +152,10 @@ data.todo.forEach(task => createTask(task,"todo"));
 data.progress.forEach(task => createTask(task,"progress"));
 data.done.forEach(task => createTask(task,"done"));
 
+}
+
+function updateCounts(){
+document.getElementById("todo-count").innerText = document.getElementById("todo").children.length;
+document.getElementById("progress-count").innerText = document.getElementById("progress").children.length;
+document.getElementById("done-count").innerText = document.getElementById("done").children.length;
 }
